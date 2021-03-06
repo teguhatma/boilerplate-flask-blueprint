@@ -11,4 +11,8 @@ def create_app(config_name):
 
     app.register_blueprint(admin)
 
+    from app.usr import usr
+
+    app.register_blueprint(usr)
+
     return app
