@@ -3,6 +3,7 @@ import os
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = "sqlite:////tmp/database.db"
     SECRET_KEY = os.environ.get("SECRET_KEY")
     LOG_TO_STDOUT = os.environ.get("LOG_TO_STDOUT")
 
