@@ -1,7 +1,8 @@
 from ... import usr
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from ...form.forms import LoginForm
 from flask_login import login_user, login_required
+from app.models import User
 
 
 @usr.route("/login", methods=["GET", "POST"])
