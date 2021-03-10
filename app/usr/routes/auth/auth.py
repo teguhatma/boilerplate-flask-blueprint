@@ -1,7 +1,7 @@
 from ... import usr
 from flask import render_template, redirect, url_for, flash, request
 from ...form.forms import LoginForm
-from flask_login import login_user, login_required, current_user
+from flask_login import login_user, login_required, current_user, logout_user
 from app.models import User
 
 
@@ -25,3 +25,9 @@ def login():
         else:
             flash("Email dan password anda salah.")
     return render_template("login.html", title="Login", form=form)
+
+
+@usr.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for(".login"))
