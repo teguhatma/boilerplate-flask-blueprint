@@ -22,9 +22,9 @@ def login():
                     next = url_for("admin.dashboard")
             return redirect(next)
         elif user is None:
-            flash("Maaf, Anda belum terdaftar.", "info")
+            flash("Sorry, no account detected.", "info")
         else:
-            flash("Email dan password anda salah.", "info")
+            flash("Wrong email and password.", "info")
     return render_template("login.html", title="Login", form=form)
 
 
