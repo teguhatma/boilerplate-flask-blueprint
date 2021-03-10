@@ -21,9 +21,9 @@ def login():
                     next = url_for("admin.dashboard")
             return redirect(next)
         elif user is None:
-            flash("Maaf, Anda belum terdaftar.")
+            flash("Maaf, Anda belum terdaftar.", "info")
         else:
-            flash("Email dan password anda salah.")
+            flash("Email dan password anda salah.", "info")
     return render_template("login.html", title="Login", form=form)
 
 
