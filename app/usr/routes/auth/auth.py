@@ -1,6 +1,7 @@
 from ... import usr
+from app import db
 from flask import render_template, redirect, url_for, flash, request
-from ...form.forms import LoginForm
+from ...form.forms import LoginForm, SignUpForm
 from flask_login import login_user, login_required, current_user, logout_user
 from app.models import User
 
@@ -25,6 +26,19 @@ def login():
         else:
             flash("Email dan password anda salah.", "info")
     return render_template("login.html", title="Login", form=form)
+
+
+@usr.route("/sign-up", methods=["GET", "POST"])
+def sign_up():
+    form = SignUpForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.generate_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash("Your account has been created.")
+        return redirect(url_for(".login"))
+    return render_template("signup.html", form=form, title="Sign Up")
 
 
 @usr.route("/logout")
